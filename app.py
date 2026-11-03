@@ -30,7 +30,7 @@ def report():
   sums=c.execute("SELECT status,COUNT(*) n FROM attendance WHERE attendance_date=? GROUP BY status",(day,)).fetchall()
  counts={r["status"]:r["n"] for r in sums}
  return render_template("report.html",records=rows,day=day,present=counts.get("Present",0),absent=counts.get("Absent",0))
- @app.route("/delete_attendance/<int:record_id>", methods=["POST"])
+@app.route("/delete_attendance/<int:record_id>", methods=["POST"])
 def delete_attendance(record_id):
     day = request.form.get("day") or date.today().isoformat()
 
